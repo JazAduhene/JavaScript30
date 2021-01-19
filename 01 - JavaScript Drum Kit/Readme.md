@@ -1,7 +1,7 @@
-Javscript Drum Kit
+# Javscript Drum Kit
 
-## Key events
+### Key events
 
-## Playing Audio
+### Playing Audio
 
-## Listened for the transition End event
+### Listened for the transition End event
