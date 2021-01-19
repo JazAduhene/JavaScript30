@@ -58,6 +58,25 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+  
+  function playSound(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);  //Keycode element in console
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+    if(!audio) return; // Stops the function from running all together if there is no audio element. This is for the keys that are not a part of the drumkit.
+    audio.currentTime = 0; // Rewind to the start, so that everytime key is pressed it will sound rather than finishing the sound before it can be pressed all over again. 
+    audio.play();
+    console.log(key);
+    key.classList.add('playing'); // Add the blue colour to the key when pressed. Selects from CSS.
+  };
+
+  function removeTransition(e) {
+    if (e.propertyName !== 'transform') return; // Skip if its not a transform
+    this.classList.remove('playing');
+  }
+
+  const keys = document.querySelectorAll('.key');
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+  window.addEventListener('keydown', playSound); // 1. Listen for the keydown event. 2. Then run function that gives the event.
 
 </script>
 
